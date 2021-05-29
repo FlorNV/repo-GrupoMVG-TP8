@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Orelega+One&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orelega+One&display=swap');
+
+
+body {
+	background: #C9D6FF;
+	background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
+	background: linear-gradient(to right, #E2E2E2, #C9D6FF);
+}
+
+body h1 {
+	font-family: 'Orelega One', cursive;
+}
+
+#header h1 {
+	font-size: 70px
+}
+#header h1, #empresa {
+	font-family: 'Pacifico', cursive;
+	text-decoration: none;
+}
+#header p {
+	font-family: 'Orelega One', cursive;
+	font-size: 30px;
+}
+
+#empresa {
+	font-size: 35px;
+}
+#footer i {
+	font-size: 20px;
+}
+#redes i {
+	font-size: 25px;
+}
+#redes a, #header a {
+	text-decoration: none;
+}
+#ultimo-producto {
+	width: 70%;
+	margin-left: 15%; 
+}
+.productos card {
+	width: 400px;
+	height: 220px;
+}
+#ultima-compra {
+	width: 70%;
+	margin-left: 15%; 
+}

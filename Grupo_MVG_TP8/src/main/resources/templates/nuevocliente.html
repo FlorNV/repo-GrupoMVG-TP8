@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+		<title>Nuevo Cliente</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+	
+		<header th:replace="/layout/cabecera :: header"></header>
+		<div th:replace="/layout/navegacion :: nav"></div>
+		
+		<div class="container py-3">
+			<div class="row">
+				<div class="col-md-10">
+					<h1 align="center">Nuevo cliente</h1>
+					<form th:action="@{/cliente/guardar}" th:object="${cliente}" method="POST">
+					
+						<fieldset class="form-group row">
+						    <legend class="col-form-label col-md-4 float-md-left pt-0">Tipo de documento</legend>
+						    <div class="col-md-8">
+						      <div class="form-check">			      	
+						        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="DNI" th:field="*{tipoDocumento}">
+						        <label class="form-check-label" for="tipoDocumento">
+						          DNI
+						        </label>
+						      </div>
+						      
+						      <div class="form-check">
+						        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="Pasaporte" th:field="*{tipoDocumento}">
+						        <label class="form-check-label" for="tipoDocumento">
+						          Pasaporte
+						        </label>
+						      </div>
+						    </div>
+						</fieldset>
+						
+						
+					  	<div class="form-group row">
+					    	<label for="nroDocumento" class="col-md-4 col-form-label">Número de documento</label>
+					    	<div class="col-md-8">
+					      		<input type="number" class="form-control" id="nroDocumento" th:field="*{nroDocumento}">
+					    	</div>
+					  	</div>
+					  		  
+					  	<div class="form-group row">
+					    	<label for="nombreApellido" class="col-md-4 col-form-label">Nombre y Apellido</label>
+					    	<div class="col-md-8">
+					      		<input type="text" class="form-control" id="nombreApellido" th:field="*{nombreApellido}">
+					    	</div>
+					  	</div>		  
+					  
+					  	<div class="form-group row">
+					    	<label for="email" class="col-md-4 col-form-label">E-mail</label>
+					    	<div class="col-md-8">
+					      		<input type="email" class="form-control" id="email" th:field="*{email}">
+					    	</div>
+					  	</div>
+					  
+					  	<div class="form-group row">
+					    	<label for="password" class="col-md-4 col-form-label">Password</label>
+					    	<div class="col-md-8">
+					      		<input type="password" class="form-control" id="password" th:field="*{password}"/>
+					    	</div>
+					  	</div>		  
+					  
+					  	<div class="form-group row">
+					    	<label for="fechaNacimiento" class="col-md-4 col-form-label">Fecha de nacimiento</label>
+					    	<div class="col-md-8">
+					      		<input type="date" class="form-control" id="fechaNacimiento" th:field="*{fechaNacimiento}">
+					    	</div>
+					  	</div>		  
+					  
+					  	<div class="form-group row">
+					    	<label for="codigoAreaTelefono" class="col-md-4 col-form-label">Código de Area</label>
+					    	<div class="col-md-8">
+					      		<input type="number" class="form-control" id="codigoAreaTelefono" th:field="*{codigoAreaTelefono}">
+					    	</div>
+					  	</div>		  
+					  
+					  	<div class="form-group row">
+					    	<label for="nroTelefono" class="col-md-4 col-form-label">Número de teléfono</label>
+					    	<div class="col-md-8">
+					      		<input type="number" class="form-control" id="nroTelefono" th:field="*{nroTelefono}">
+					    	</div>
+					  	</div>
+					  		  
+					  	<div class="form-group row">
+					    	<label for="fechaUltimaCompra" class="col-md-4 col-form-label">Fecha de éltima compra</label>
+					    	<div class="col-md-8">
+					      		<input type="date" class="form-control" id="fechaUltimaCompra" th:field="*{fechaUltimaCompra}">
+					    	</div>
+					  	</div>
+					  	
+					  	<!-- DATOS PARA CUENTA  -->
+					  	<h1 align="center">Datos de la cuenta</h1>
+					  	
+					  	<div class="form-group row">
+					    	<label for="saldo" class="col-md-4 col-form-label">Saldo</label>
+					    	<div class="col-md-8">
+					      		<input type="number" class="form-control" id="sueldo" th:field="*{cuenta.saldo}">
+					    	</div>
+					  	</div>
+					  	
+					  	<div class="form-group row">
+					    	<label for="fechaCreacion" class="col-md-4 col-form-label">Fecha de creación</label>
+					    	<div class="col-md-8">
+					      		<input type="date" class="form-control" id="fechaCreacion" th:field="*{cuenta.fechaCreacion}">
+					    	</div>
+					  	</div>
+					  	
+					  	<fieldset class="form-group row">
+						    <legend class="col-form-label col-md-4 float-md-left pt-0">Estado de Cuenta</legend>
+						    <div class="col-md-8">
+						      <div class="form-check">			      	
+						        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="ACTIVA" th:field="*{cuenta.estado}">
+						        <label class="form-check-label" for="estado">
+						          ACTIVA
+						        </label>
+						      </div>
+						      
+						      <div class="form-check">
+						        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="INACTIVA" th:field="*{cuenta.estado}">
+						        <label class="form-check-label" for="estado">
+						          INACTIVA
+						        </label>
+						      </div>
+						    </div>
+						</fieldset>
+					  
+					  	<div class="form-group row">
+					    	<div class="col-md-8">
+					      		<button type="submit" class="btn btn-info">Guardar</button>
+					   		 </div>
+					  	</div>
+					</form>
+				</div>
+				<aside th:replace="/layout/publicidad :: aside"></aside>
+			</div>
+		</div>
+		
+		<footer th:replace="/layout/footer :: footer"></footer>
+		
+	</body>
+</html>

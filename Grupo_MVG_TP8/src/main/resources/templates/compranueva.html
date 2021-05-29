@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+		<title>Formulario Compra</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+	<header th:replace="/layout/cabecera :: header"></header>
+	<div th:replace="/layout/navegacion :: nav"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10">
+					<h1 align="center">Nueva Compra</h1>
+					<div class="btn-group justify-content-center">
+					  <a href="/compra/listado" class="btn btn-outline-info">Listado de Compras</a>
+					  <a href="/compra/ultima" class="btn btn-outline-info"><i class="bi bi-binoculars mr-2"></i>Consultar ultima compra</a>
+					</div>
+					<form th:action="@{/compra/guardar}" th:object="${compra}" method="POST">
+					  <div class="form-row">
+					    <div class="col-md-6 mb-3">
+					      <label for="codigo">Codigo de Compra</label>
+					      <input type="number" class="form-control" id="codigo" th:field="*{codigo}" required>
+					    </div>
+					    
+					    <div class="col-md-6 mb-3">
+					      <label for="producto">Seleccionar Producto</label>
+					      <select th:field="*{producto.codigo}" id="producto" class="form-control">
+							  <option th:each="prod : ${productos}" th:value="${prod.codigo}" th:text="${prod.nombre}"></option>
+							</select>
+					    </div>
+					    
+					    <div class="col-md-6 mb-3">
+					      <label for="cantidad">Cantidad</label>
+					      <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required>
+					    </div>
+					    </div>
+					  <button class="btn btn-primary" type="submit">Enviar</button>
+					</form>
+					<br><br>
+				</div>
+				<aside th:replace="/layout/publicidad :: aside"></aside>
+			</div>
+		</div>
+		
+		<footer th:replace="/layout/footer :: footer"></footer>
+	
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Principal</title>
+	</head>
+	<body>
+		<div id="nav" th:fragment="nav">
+			<nav class="navbar navbar-expand-lg navbar-light bg-info">
+			  <a class="navbar-brand" href="/principal">INICIO</a>
+			  
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  
+			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			    <div class="navbar-nav">
+			      <a class="nav-link" href="/producto/listado">PRODUCTOS</a>
+			      <a class="nav-link" href="/cliente/listado">CLIENTES</a>
+			      <a class="nav-link" href="/compra/nueva">COMPRAS</a>
+			      <a class="nav-link" href="/cuenta/listado">CUENTAS</a>
+			      <a class="nav-link" href="#">OFERTAS</a>
+			      <a class="nav-link" href="#">CATÁLOGO</a>
+			      <a class="nav-link" href="#">CONTACTO</a>
+			    </div>
+			    
+			    <form class="form-inline my-2 my-lg-0 ml-auto">
+			      <input class="form-control mr-sm-2" type="search" placeholder="Buscar">
+			      <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
+			    </form>
+			  </div>
+			</nav>
+		</div>
+	</body>
+</html>
+

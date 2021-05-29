@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+		<title>Compras</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+		<header th:replace="/layout/cabecera :: header"></header>
+		<div th:replace="/layout/navegacion :: nav"></div>
+		
+		<div class="container py-3">
+			<div class="row">
+				<div class="container col-sm-12 col-md-10">
+					<h1 class="text-center">Compras registradas</h1>
+					<div class="btn-group py-2">
+						<a href="/compra/nueva" class="btn btn-outline-info"><i class="bi bi-plus-square mr-2"></i>Registrar una compra</a>
+					 	<a href="/compra/ultima" class="btn btn-outline-info"><i class="bi bi-binoculars mr-2"></i>Consultar ultima</a>
+					</div>
+					<div class="table-responsive">
+						<table class="table table-hover table-dark text-center">
+							<thead>
+								<tr>
+									<th scope="col">Código</th>
+									<th scope="col">Nombre del producto</th>
+									<th scope="col">Cantidad</th>
+									<th scope="col">Total</th>
+									<th scope="col">Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="comp : ${compras}">
+									<td th:text="${comp.codigo}"></td>
+									<td th:text="${comp.producto.nombre}"></td>
+									<td th:text="${comp.cantidad}"></td>
+									<td th:text="'$' + ${comp.total}"></td>
+									<td>
+										<a th:href="@{/compra/editar/}+${comp.id}" class="btn btn-warning">Editar</a>
+										<a th:href="@{/compra/eliminar/}+${comp.id}" class="btn btn-danger">Eliminar</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<aside th:replace="/layout/publicidad :: aside"></aside>
+				
+			</div>
+		</div>
+		
+		<footer th:replace="/layout/footer :: footer"></footer>
+		
+	</body>
+</html>

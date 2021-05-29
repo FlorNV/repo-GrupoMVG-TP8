@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+		<title>Ultimo Producto</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	<body>
+		<header th:replace="/layout/cabecera :: header"></header>
+		<div th:replace="/layout/navegacion :: nav"></div>
+		
+		<div class="container py-3">
+			<div class="row">
+				<div class="container col-sm-12 col-md-10">
+					<h1 class="text-center py-3">Detalle del último producto agregado</h1>
+					<table id="ultimo-producto" class="table table-bordered table-hover table-dark">
+					  <tbody class="text-center">
+					  	<tr>
+					      <th scope="row">Código</th>
+					      <td><span th:text="${producto.codigo}"></span></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Nombre</th>
+					      <td><span th:text="${producto.nombre}"></span></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Precio</th>
+					      <td>$<span th:text="${producto.precio}"></span></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Marca</th>
+					      <td><span th:text="${producto.marca}"></span>
+					    <tr>
+					      <th scope="row">Stock</th>
+					      <td><span th:text="${producto.stock}"></span></td>
+					    </tr>
+						</tbody>
+					</table>
+					
+				</div>
+				<aside th:replace="/layout/publicidad :: aside"></aside>
+			</div>
+		</div>
+		
+		<footer th:replace="/layout/footer :: footer"></footer>
+	</body>
+</html>
