@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,9 +28,11 @@ public class Compra {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Min(value = 1, message = "Debe ingresar un codigo igual o mayor a uno")
 	@Column(name = "com_codigo", nullable = false)
 	private int codigo;
 	
+	@Min(value = 1, message = "El número de unidades debe ser igual o mayor a uno")
 	@Column(name = "com_cantidad")
 	private int cantidad;
 	
@@ -38,6 +42,7 @@ public class Compra {
 	@OneToMany(mappedBy = "compra")
 	private List<Producto> productos = new ArrayList<Producto>();
 	
+	@Valid
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "prod_id")
