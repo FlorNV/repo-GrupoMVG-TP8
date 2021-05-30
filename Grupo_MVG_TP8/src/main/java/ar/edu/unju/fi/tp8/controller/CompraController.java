@@ -3,10 +3,13 @@ package ar.edu.unju.fi.tp8.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,14 +44,22 @@ public class CompraController {
 	}
 	
 	@PostMapping("/compra/guardar")
-	public ModelAndView getGuardarCompraPage(@ModelAttribute("compra")Compra compra) {
-		ModelAndView model = new ModelAndView("compras");
-		Producto producto = productoService.getProductoPorCodigo(compra.getProducto().getCodigo());
-		compra.setProducto(producto);
-		compra.setTotal(compra.getCantidad()*producto.getPrecio());
-		compraService.guardarCompra(compra);
-		model.addObject("compras", compraService.getCompras());
-		return model;
+	public ModelAndView getGuardarCompraPage(@Valid @ModelAttribute("compra")Compra compra, BindingResult validacion) {
+		ModelAndView model;
+		if(validacion.hasErrors()) {
+			model = new ModelAndView("compranueva");
+			model.addObject("productos", productoService.getProductos());
+			return model;
+		}
+		else {
+			model = new ModelAndView("compras");
+			Producto producto = productoService.getProductoPorCodigo(compra.getProducto().getCodigo());
+			compra.setProducto(producto);
+			compra.setTotal(compra.getCantidad()*producto.getPrecio());
+			compraService.guardarCompra(compra);
+			model.addObject("compras", compraService.getCompras());
+			return model;
+		}
 	}
 	
 	@GetMapping("/compra/listado")
