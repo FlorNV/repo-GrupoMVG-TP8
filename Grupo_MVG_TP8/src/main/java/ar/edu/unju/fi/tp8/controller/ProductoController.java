@@ -2,10 +2,13 @@ package ar.edu.unju.fi.tp8.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,11 +35,17 @@ public class ProductoController {
 	}
 	
 	@PostMapping("/producto/guardar")
-	public String guardarProducto(@ModelAttribute("producto") Producto producto) {
-		
-		productoService.agregarProducto(producto);
-		return "resultado";
-		
+	public ModelAndView guardarProducto(@Valid @ModelAttribute("producto") Producto producto, BindingResult resultadoValidacion) {
+		ModelAndView model;
+		if(resultadoValidacion.hasErrors()) {
+			model = new ModelAndView("nuevoproducto");
+			return model;
+		}
+		else {
+			productoService.agregarProducto(producto);
+			model = new ModelAndView("resultado");
+			return model;
+		}
 	}
 	
 	@GetMapping("/producto/listado")

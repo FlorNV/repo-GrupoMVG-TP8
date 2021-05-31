@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -16,26 +20,35 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="PRODUCTOS")
 public class Producto {
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "prod_id")
 	private Long id;
 	
+	@Min(value = 1, message = "Debe ingresar un codigo igual o mayor a uno")
 	@Column(name="prod_codigo", nullable = false)
 	private int codigo;
 	
+	@NotEmpty(message = "El nombre no puede estar vacio")
+	@Size(message = "El nombre debe tener como mínimo 3 caracteres")
 	@Column(name="prod_nombre")
 	private String nombre;
 	
+	@Min(value = 1, message = "Debe ingresar un precio igual o mayor a uno")
 	@Column(name="prod_precio")
 	private double precio;
 	
+	@NotEmpty(message = "La marca no puede estar vacio")
 	@Column(name="prod_marca")
 	private String marca;
 	
+	@Min(value = 0, message = "Debe ingresar un stock igual o mayor a cero")
 	@Column(name="prod_stock")
 	private int stock;
 	
+	@Valid
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "com_id")
 	private Compra compra;
