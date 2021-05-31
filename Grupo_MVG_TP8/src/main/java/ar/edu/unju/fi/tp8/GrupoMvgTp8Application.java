@@ -8,6 +8,10 @@ public class GrupoMvgTp8Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GrupoMvgTp8Application.class, args);
+		//Integrantes del equipo:
+		//Valdez Florencia Noelí
+		//Muñoz Sofía Julieta
+		//Gallardo Matías Joaquin
 	}
 
 }
