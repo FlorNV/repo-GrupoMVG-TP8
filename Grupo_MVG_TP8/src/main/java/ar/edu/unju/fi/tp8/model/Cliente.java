@@ -15,6 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,35 +35,47 @@ public class Cliente {
 	@Column(name = "cli_id")
 	private Long id;
 	
+	@NotNull(message = "Debe elegir el tipo de documento")
 	@Column(name = "cli_tipoDocumento")
 	private String tipoDocumento;
 	
+	@Min(value=1000000, message = "El numero de documento debe ser mayor o igual a 1000000")
 	@Column(name = "cli_nroDocumento", nullable = false)
 	private int nroDocumento;
 	
+	@NotEmpty(message = "Debe ingresar nombre y apelldio")
+	@Size(min=15, max=300, message = "El nombre y apellido debe tener como minimo 15 caracteresy como maximo 300")
 	@Column(name = "cli_nombreApellido", length = 300)
 	private String nombreApellido;
 	
+	@NotEmpty(message = "Debe ingresar un e-mail")
 	@Column(name = "cli_email")
 	private String email;
 	
+	@Min(value = 8, message = "La contraseña debe tener como minimo 8 caracteres")
 	@Column(name = "cli_password")
 	private String password;
 	
+	@NotNull(message = "Debe ingresar una fecha valida")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "cli_fechaNacimiento")
 	private LocalDate fechaNacimiento;
 	
+	@Max(value = 9999, message = "El codigo de area debe tener 3 o 4 digitos")
 	@Column(name = "cli_codigoAreaTelefono")
 	private int codigoAreaTelefono;
 	
+	@Min(value = 1000000, message = "El numero debe ser mayor a 1000000")
+	@Max(value= 9999999,message = "El numero de telefono no debe superar los 9999999")
 	@Column(name = "cli_nroTelefono")
 	private int nroTelefono;
 	
+	@NotNull(message = "Debe ingresar una fecha valida")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "cli_fechaUltimaCompra")
 	private LocalDate fechaUltimaCompra;
 	
+	@Valid
 	@Autowired
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cuen_id")
