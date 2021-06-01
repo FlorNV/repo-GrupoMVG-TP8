@@ -65,6 +65,7 @@ public class CompraController {
 	@GetMapping("/compra/listado")
 	public ModelAndView getListadoCompraPage() {
 		ModelAndView model = new ModelAndView("compras");
+		model.addObject("compra", compra);
 		model.addObject("compras", compraService.getCompras());
 		return model;
 	}
@@ -89,5 +90,12 @@ public class CompraController {
 		ModelAndView model = new ModelAndView("redirect:/compra/listado");
 		compraService.eliminarCompra(id);
 		return model;
+	}
+	
+	@GetMapping("/compra/busqueda")
+	public String buscarProductoPorFiltro(Model model, @ModelAttribute(name = "compra")Compra compra) {
+		model.addAttribute("compra", this.compra);
+		model.addAttribute("compras", compraService.consultarCompras(compra.getProducto().getNombre(), compra.getTotal()));
+		return "compras";
 	}
 }
