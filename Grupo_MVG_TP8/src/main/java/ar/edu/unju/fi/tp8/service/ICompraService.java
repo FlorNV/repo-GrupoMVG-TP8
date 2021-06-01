@@ -13,5 +13,6 @@ public interface ICompraService {
 	public Compra consultarUltimaCompra();
 	public Optional<Compra> getCompraPorId(Long id);
 	public void eliminarCompra(Long id);
+	public List<Compra> consultarCompras(String nombreProducto, double monto);
 	
 }
