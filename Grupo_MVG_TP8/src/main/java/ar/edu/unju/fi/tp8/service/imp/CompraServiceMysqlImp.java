@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.tp8.service.imp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +50,17 @@ public class CompraServiceMysqlImp implements ICompraService {
 	@Override
 	public void eliminarCompra(Long id) {
 		compraRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Compra> consultarCompras(String nombreProducto, double monto) {
+		List<Compra> compras = new ArrayList<Compra>();
+		if(!nombreProducto.isEmpty() && monto>=0)
+			compras = compraRepository.findByProductoNombreAndTotalGreaterThanEqual(nombreProducto, monto);
+		else
+			if(nombreProducto.isEmpty() && monto>=0)
+				compras = compraRepository.findByTotalGreaterThanEqual(monto);
+		return compras;
 	}
 
 }
