@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -24,16 +28,20 @@ public class Cuenta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Max(value = 100000, message = "El saldo no puede superar los 100000")
 	@Column(name = "cuen_saldo")
 	private double saldo;
 	
+	@NotNull(message = "Debe ingresar una fecha valida")
 	@Column(name = "cuen_fechaCreacion")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaCreacion;
 	
+	@NotBlank(message = "Debe elegir un estado para la cuenta")
 	@Column(name = "cuen_estado")
 	private String estado;
 	
+	@Valid
 	@OneToOne(mappedBy = "cuenta", fetch = FetchType.LAZY)
 	@JoinColumn(name= "cli_id")
 	private Cliente cliente;
