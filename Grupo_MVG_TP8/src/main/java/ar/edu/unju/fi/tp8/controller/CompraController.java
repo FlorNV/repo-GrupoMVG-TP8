@@ -50,6 +50,7 @@ public class CompraController {
 		if(validacion.hasErrors()) {
 			model = new ModelAndView("compranueva");
 			model.addObject("productos", productoService.getProductos());
+			System.out.println(compra);
 			return model;
 		}
 		else {
@@ -64,11 +65,10 @@ public class CompraController {
 	}
 	
 	@GetMapping("/compra/listado")
-	public ModelAndView getListadoCompraPage() {
-		ModelAndView model = new ModelAndView("compras");
-		model.addObject("compra", compra);
-		model.addObject("compras", compraService.getCompras());
-		return model;
+	public String getListadoCompraPage(Model model) {
+		model.addAttribute("compra", compra);
+		model.addAttribute("compras", compraService.getCompras());
+		return "compras";
 	}
 	
 	@GetMapping("/compra/ultima")
@@ -94,9 +94,9 @@ public class CompraController {
 	}
 	
 	@GetMapping("/compra/busqueda")
-	public String buscarProductoPorFiltro(@RequestParam(name="producto.nombre")String nombreProd , @RequestParam(name="total")double monto, Model model, @ModelAttribute(name = "compra")Compra compra) {
+	public String buscarProductoPorFiltro(@RequestParam(name = "producto.nombre")String nombreProducto, @RequestParam(name = "total")double monto, Model model, @ModelAttribute(name = "compra")Compra compra) {
 		model.addAttribute("compra");
-		model.addAttribute("compras",compraService.consultarCompras(nombreProd, monto));
+		model.addAttribute("compras", compraService.consultarCompras(nombreProducto, monto));
 		return "compras";
 	}
 }

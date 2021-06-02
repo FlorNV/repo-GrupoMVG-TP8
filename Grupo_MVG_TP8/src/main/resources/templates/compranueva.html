@@ -21,9 +21,10 @@
 					</div>
 					<form th:action="@{/compra/guardar}" th:object="${compra}" method="POST">
 					  <div class="form-row">
+					  	<input type="hidden" th:field="*{id}"/> 
 					    <div class="col-md-6 mb-3">
 					      <label for="codigo">Codigo de Compra</label>
-					      <input type="number" class="form-control" id="codigo" th:field="*{codigo}" required>
+					      <input type="number" class="form-control" id="codigo" th:field="*{codigo}">
 					      <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
 					    </div>
 					    
@@ -37,7 +38,7 @@
 					    
 					    <div class="col-md-6 mb-3">
 					      <label for="cantidad">Cantidad</label>
-					      <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required>
+					      <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}">
 					      <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}"></div>
 					    </div>
 					    </div>
