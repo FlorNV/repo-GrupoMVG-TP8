@@ -19,6 +19,7 @@
 					<h1 align="center">Nuevo cliente</h1>
 					<form th:action="@{/cliente/guardar}" th:object="${cliente}" method="POST">
 					<input type="hidden" th:field="*{id}"/>
+					<input type="hidden" th:field="*{cuenta.id}"/>
 					<!-- DATOS DEL CLIENTE  -->
 						<fieldset class="form-group row">
 						    <legend class="col-form-label col-md-4 float-md-left pt-0">Tipo de documento</legend>
