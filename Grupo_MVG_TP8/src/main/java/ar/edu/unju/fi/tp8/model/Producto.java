@@ -27,10 +27,6 @@ public class Producto {
 	@Column(name = "prod_id")
 	private Long id;
 	
-	@Min(value = 1, message = "Debe ingresar un codigo igual o mayor a uno")
-	@Column(name="prod_codigo", nullable = false)
-	private int codigo;
-	
 	@NotEmpty(message = "El nombre no puede estar vacio")
 	@Size(message = "El nombre debe tener como mínimo 3 caracteres")
 	@Column(name="prod_nombre")
@@ -56,16 +52,21 @@ public class Producto {
 	public Producto() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Producto(Long id, int codigo, String nombre, double precio, String marca, int stock) {
+
+	public Producto(Long id,
+			@NotEmpty(message = "El nombre no puede estar vacio") @Size(message = "El nombre debe tener como mínimo 3 caracteres") String nombre,
+			@Min(value = 1, message = "Debe ingresar un precio igual o mayor a uno") double precio,
+			@NotEmpty(message = "La marca no puede estar vacio") String marca,
+			@Min(value = 0, message = "Debe ingresar un stock igual o mayor a cero") int stock, @Valid Compra compra) {
 		super();
 		this.id = id;
-		this.codigo = codigo;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.marca = marca;
 		this.stock = stock;
+		this.compra = compra;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -73,14 +74,6 @@ public class Producto {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public int getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getNombre() {
@@ -117,8 +110,10 @@ public class Producto {
 
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", marca="
-				+ marca + ", stock=" + stock + "]";
+		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", marca=" + marca + ", stock="
+				+ stock + ", compra=" + compra + "]";
 	}
+
+	
 	
 }
