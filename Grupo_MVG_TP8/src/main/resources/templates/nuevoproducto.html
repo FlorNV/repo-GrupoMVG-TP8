@@ -18,14 +18,7 @@
 					<h1>Alta de un nuevo producto</h1>
 					<form th:action="@{/producto/guardar}" th:object="${producto}" method="POST">
  						<input type="hidden" th:field="*{id}"/> 
-						<div class="form-group row">
-							<label for="codigo" class="col-md-4 col-form-label">Código del producto</label>
-							<div class="col-md-8">
-								<input type="number" class="form-control" id="codigo" th:field="*{codigo}"/>
-							</div>
-							<div class="form-text text-danger col-sm-5 offset-4" role="alert" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
-						</div>
-						
+
 						<div class="form-group row">
 							<label for="nombre" class="col-md-4 col-form-label">Nombre del producto</label>
 							<div class="col-md-8">
