@@ -55,9 +55,9 @@ public class CompraController {
 		}
 		else {
 			model = new ModelAndView("compras");
-			Producto producto = productoService.getProductoPorCodigo(compra.getProducto().getCodigo());
-			compra.setProducto(producto);
-			compra.setTotal(compra.getCantidad()*producto.getPrecio());
+			Optional<Producto> producto = productoService.getProductoPorId(compra.getProducto().getId());
+			compra.setProducto(producto.get());
+			compra.setTotal(compra.getCantidad()*producto.get().getPrecio());
 			compraService.guardarCompra(compra);
 			model.addObject("compras", compraService.getCompras());
 			return model;

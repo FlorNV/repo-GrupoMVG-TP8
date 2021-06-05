@@ -41,12 +41,6 @@ public class ProductoServiceMysqlImp implements IProductoService{
 	}
 
 	@Override
-	public Producto getProductoPorCodigo(int codigo) {
-		Producto producto = productoRepository.findByCodigo(codigo);
-		return producto;
-	}
-
-	@Override
 	public Optional<Producto> getProductoPorId(Long id) {
 		Optional<Producto> producto = productoRepository.findById(id);
 		return producto;

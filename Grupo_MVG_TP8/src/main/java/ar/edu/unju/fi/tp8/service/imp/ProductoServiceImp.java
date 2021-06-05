@@ -49,17 +49,6 @@ public class ProductoServiceImp implements IProductoService{
 	}
 
 	@Override
-	public Producto getProductoPorCodigo(int codigo) {
-		Producto prod = new Producto();
-		for(Producto p: productos) {
-			if(p.getCodigo()==codigo) {
-				prod = p;
-			}
-		}
-		return prod;
-	}
-
-	@Override
 	public Optional<Producto> getProductoPorId(Long id) {
 		// TODO Auto-generated method stub
 		return null;
