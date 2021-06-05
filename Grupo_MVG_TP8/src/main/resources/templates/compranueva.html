@@ -21,19 +21,14 @@
 					</div>
 					<form th:action="@{/compra/guardar}" th:object="${compra}" method="POST">
 					  <div class="form-row">
-					  	<input type="hidden" th:field="*{id}"/> 
-					    <div class="col-md-6 mb-3">
-					      <label for="codigo">Codigo de Compra</label>
-					      <input type="number" class="form-control" id="codigo" th:field="*{codigo}">
-					      <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
-					    </div>
+					  	<input type="hidden" th:field="*{id}"/>
 					    
 					    <div class="col-md-6 mb-3">
 					      <label for="producto">Seleccionar Producto</label>
-					      <select th:field="*{producto.codigo}" id="producto" class="form-control">
-							  <option th:each="prod : ${productos}" th:value="${prod.codigo}" th:text="${prod.nombre}"></option>
+					      <select th:field="*{producto.id}" id="producto" class="form-control">
+							  <option th:each="prod : ${productos}" th:value="${prod.id}" th:text="${prod.nombre}"></option>
 							</select>
-							<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('producto.codigo')}" th:errors="*{producto.codigo}"></div>
+							<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('producto.id')}" th:errors="*{producto.id}"></div>
 					    </div>
 					    
 					    <div class="col-md-6 mb-3">
